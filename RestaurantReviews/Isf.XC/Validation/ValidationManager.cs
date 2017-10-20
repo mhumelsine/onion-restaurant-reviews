@@ -14,13 +14,13 @@ namespace Isf.XC.Validation
             this.stopOnFirstFailure = stopOnFirstFailure;
         }
 
-        public async Task<ObjectValidationResult> ValidateAsync(object objectToValidate, IDictionary<string, object> validationContext = null)
+        public ObjectValidationResult Validate(object objectToValidate, IDictionary<string, object> validationContext = null)
         {
             ObjectValidationResult result = new ObjectValidationResult();
 
             foreach (var validator in this.validators)
             {
-                var validationResult = await validator.ValidateAsync(objectToValidate, validationContext);
+                var validationResult = validator.Validate(objectToValidate, validationContext);
 
                 if (!validationResult.IsValid && this.stopOnFirstFailure)
                 {

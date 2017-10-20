@@ -1,4 +1,4 @@
-﻿using RestaurantReviews.Core.Entities;
+﻿using RestaurantReviews.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +8,6 @@ namespace RestaurantReviews.Core.Stores
 {
     public interface IReviewStore : IStore<Review>
     {
-        Task<int> GetReviewCountAsync(string restaurantId);
+        int GetReviewCount(string restaurantId);
     }
 }

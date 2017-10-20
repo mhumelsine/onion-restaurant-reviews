@@ -9,5 +9,23 @@ namespace Isf.XC
     {
         public bool DidComplete { get; set; }
         public ObjectValidationResult ValidationResult { get; set; }
+        public Exception Exception { get; set; }
+
+        public void RaiseExceptionOnFailure()
+        {
+            if(this.Exception != null)
+            {
+                throw this.Exception;
+            }
+        }
+
+        public static CommandResult Create(ObjectValidationResult validationResult)
+        {
+            return new CommandResult
+            {
+                ValidationResult = validationResult,
+                DidComplete = false
+            };
+        }
     }
 }

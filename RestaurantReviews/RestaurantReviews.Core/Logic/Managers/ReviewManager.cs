@@ -1,6 +1,6 @@
 ﻿using Isf.XC;
 using Isf.XC.Validation;
-using RestaurantReviews.Core.Entities;
+using RestaurantReviews.Core.DTOs;
 using RestaurantReviews.Core.Stores;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RestaurantReviews.Core.Logic.Managers
 {
-    public class ReviewManager
+    public class ReviewManager : ManagerBase
     {
         private IReviewStore reviewStore;
         private IValidator canAddReviewValidator;
@@ -22,20 +22,16 @@ namespace RestaurantReviews.Core.Logic.Managers
             this.canAddReviewValidator = canAddReviewValidator;
         }
 
-        public async Task<CommandResult> AddReviewAsync(Review review)
+        public CommandResult AddReview(Review review)
         {
-            var result = new CommandResult();
-            var validationResult = await this.canAddReviewValidator.ValidateAsync(review);
-
-            if (!validationResult.IsValid)
-            {
-                result.ValidationResult = validationResult;
-                return result;
-            }
-
-            await this.reviewStore.AddAsync(review);
-            result.DidComplete = true;
-            return result;
+            // this is a helper function to handle the validate; execute sequence of simple operations
+            return this.TryCommand(
+                validate: () => this.canAddReviewValidator.Validate(review),
+                onValid: () =>
+                {
+                    this.reviewStore.Add(review);
+                    return this.reviewStore.CommitChanges();
+                });
         }
     }
 }

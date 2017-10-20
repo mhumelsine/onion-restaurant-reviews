@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Isf.XC;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,9 +8,10 @@ namespace RestaurantReviews.Core.Stores
 {
     public interface IStore<T>
     {
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task<T> FindAsync(string id);
-        Task DeleteAsync(string id);
+        void Add(T entity);
+        void Update(T entity);
+        T Find(string id);
+        void Delete(string id);
+        CommandResult CommitChanges();
     }
 }

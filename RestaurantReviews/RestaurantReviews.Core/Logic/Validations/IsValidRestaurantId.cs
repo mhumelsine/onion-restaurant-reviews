@@ -1,5 +1,5 @@
 ﻿using Isf.XC.Validation;
-using RestaurantReviews.Core.Entities;
+using RestaurantReviews.Core.DTOs;
 using RestaurantReviews.Core.Stores;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace RestaurantReviews.Core.Logic.Validations
         {
             this.store = store;
         }
-        public override async Task<ObjectValidationResult> ValidateAsync(object objectToValidate, IDictionary<string, object> validationContext = null)
+        public override ObjectValidationResult Validate(object objectToValidate, IDictionary<string, object> validationContext = null)
         {
             var result = new ObjectValidationResult();
 
@@ -31,7 +31,7 @@ namespace RestaurantReviews.Core.Logic.Validations
                 restaurantId = ((Review)objectToValidate).RestaurantId;
             }            
 
-            var restaurant = await store.FindAsync(restaurantId);
+            var restaurant = store.Find(restaurantId);
 
             if(restaurant == null)
             {

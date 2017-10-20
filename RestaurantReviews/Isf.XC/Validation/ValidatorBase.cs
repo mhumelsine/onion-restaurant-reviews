@@ -8,7 +8,7 @@ namespace Isf.XC.Validation
 {
     public abstract class ValidatorBase : IValidator
     {
-        public abstract Task<ObjectValidationResult> ValidateAsync(object objectToValidate, IDictionary<string, object> validationContext = null);
+        public abstract ObjectValidationResult Validate(object objectToValidate, IDictionary<string, object> validationContext = null);
 
         protected object GetEntry(string key, IDictionary<string, object> validationContext)
         {

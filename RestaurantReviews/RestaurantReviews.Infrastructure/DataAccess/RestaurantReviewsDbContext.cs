@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestaurantReviews.Core.Entities;
+using RestaurantReviews.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;

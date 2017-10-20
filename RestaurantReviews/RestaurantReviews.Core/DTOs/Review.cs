@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RestaurantReviews.Core.Entities
+namespace RestaurantReviews.Core.DTOs
 {
     public class Review
     {

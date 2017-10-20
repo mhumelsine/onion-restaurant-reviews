@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RestaurantReviews.Core.Entities
+namespace RestaurantReviews.Core.DTOs
 {
-    public class Reviewer
+    public class RestaurantSearch
     {
-        public string Id { get; set; }
         public string Name { get; set; }
+        public string City { get; set; }
     }
 }
