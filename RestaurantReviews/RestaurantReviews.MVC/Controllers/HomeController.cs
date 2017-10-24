@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RestaurantReviews.Core.Stores;
+using RestaurantReviews.Infrastructure.Stores;
+using RestaurantReviews.Core.DTOs;
+using RestaurantReviews.Infrastructure.Factories;
+using RestaurantReviews.Core.Logic.Managers;
 
 namespace RestaurantReviews.MVC.Controllers
 {
@@ -15,7 +20,18 @@ namespace RestaurantReviews.MVC.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            IRestaurantManagerFactory factory = new RestaurantManagerFactory();
+            RestaurantManager manager = factory.CreateInstance();
+
+            Restaurant restaurant = new Restaurant
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "Kool Beans Cafe",
+                City = "Tallahassee",
+                Country = "USA"
+            };
+
+            manager.AddRestaurant(restaurant);
 
             return View();
         }

@@ -22,13 +22,15 @@ namespace Isf.XC.Validation
             {
                 var validationResult = validator.Validate(objectToValidate, validationContext);
 
-                if (!validationResult.IsValid && this.stopOnFirstFailure)
+                if (!validationResult.IsValid)
                 {
-                    return validationResult;
-                }
-                else
-                {
-                    result.AddErrors(validationResult.Errors);
+                    if (this.stopOnFirstFailure)
+                    {
+                        return validationResult;
+                    } else
+                    {
+                        result.AddErrors(validationResult.Errors);
+                    }
                 }
             }
             return result;

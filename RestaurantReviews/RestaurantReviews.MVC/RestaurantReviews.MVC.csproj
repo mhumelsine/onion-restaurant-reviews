@@ -6,6 +6,13 @@
     <UserSecretsId>aspnet-RestaurantReviews.MVC-D1A610EE-EA59-44A2-A11B-EC63AE7D8753</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Controllers\api\**" />
+    <Content Remove="Controllers\api\**" />
+    <EmbeddedResource Remove="Controllers\api\**" />
+    <None Remove="Controllers\api\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
@@ -35,10 +42,6 @@
     <ProjectReference Include="..\Isf.XC\Isf.XC.csproj" />
     <ProjectReference Include="..\RestaurantReviews.Core\RestaurantReviews.Core.csproj" />
     <ProjectReference Include="..\RestaurantReviews.Infrastructure\RestaurantReviews.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\api\" />
   </ItemGroup>
 
 </Project>

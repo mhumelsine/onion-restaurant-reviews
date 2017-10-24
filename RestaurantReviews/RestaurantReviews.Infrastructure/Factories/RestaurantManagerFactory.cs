@@ -17,7 +17,7 @@ namespace RestaurantReviews.Infrastructure.Factories
     {
         public RestaurantManager CreateInstance()
         {
-            IRestaurantStore restaurantStore = new EfRestaurantStore();
+            IRestaurantStore restaurantStore = new XmlRestaurantStore();
 
             IValidator canAddRestaurantValidator = new ValidationManager(true,                
                 new DataAnnotationsValidator(),
