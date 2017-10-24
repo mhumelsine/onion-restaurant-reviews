@@ -44,10 +44,6 @@
     <ProjectReference Include="..\RestaurantReviews.Infrastructure\RestaurantReviews.Infrastructure.csproj" />
   </ItemGroup>
 
-  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="cd $(ProjectDir)Scripts\ui&#xD;&#xA;npm start&#xD;&#xA;echo ui built" />
-  </Target>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="cd $(ProjectDir)Scripts\ui&#xD;&#xA;npm start&#xD;&#xA;echo ui built" />
   </Target>
